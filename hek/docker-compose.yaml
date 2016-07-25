@@ -34,6 +34,7 @@ heka:
   volumes:
     - /var/run/docker.sock:/var/run/docker.sock
     - ./heka/config.toml:/app/config.toml
+    - /var/log/:/opt/var/log
   links:
     - elasticsearch
   ports:

@@ -1,6 +1,9 @@
 [LogstreamerInput]
-log_directory = "/var/log"
-file_match = 'auth\.log'
+log_directory = "/opt/var/log/"
+file_match = 'messages'
+
+[DockerEventInput]
+type = "DockerEventInput"
 
 [PayloadEncoder]
 append_newlines = false
