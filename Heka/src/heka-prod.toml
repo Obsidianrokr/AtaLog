@@ -1,0 +1,30 @@
+[web]
+type = "HttpListenInput"
+address = "0.0.0.0:4881"
+
+[DockerEventInput]
+type = "DockerEventInput"
+
+[TcpInput]
+address = ":5002"
+
+[UdpInput]
+address = ":12201"
+
+[debug_output]
+type = "LogOutput"
+message_matcher = "TRUE"
+encoder = "PayloadEncoder"
+
+[ElasticSearchOutput]
+message_matcher = TRUE
+server = "http://localhost:9200"
+flush_interval = 5000
+flush_count = 10
+encoder = "ESJsonEncoder"
+
+
+[PayloadEncoder]
+append_newlines = false
+prefix_ts = true
+ts_format = "2006/01/02 3:04:05PM MST"
