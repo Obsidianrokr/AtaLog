@@ -33,13 +33,13 @@ heka:
   container_name: heka
   volumes:
     - /var/run/docker.sock:/var/run/docker.sock
-    - ./heka/config.toml:/etc/heka/config.toml
+    - ./heka/config.toml:/app/config.toml
   links:
     - elasticsearch
   ports:
     - "4352:4352"
     - "5565:5565"
-  command: hekad -config /etc/heka/config.toml
+  #command: hekad -config /etc/heka/config.toml
 
 
 #filebeat:
