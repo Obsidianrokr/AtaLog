@@ -48,5 +48,7 @@ flush_interval = 50
 
 
 [DashboardOutput]
+static_directory = "/heka/dashboard"
+working_directory = "/tmp/heka"
 ticker_interval = 1
 address = "0.0.0.0:4352"
