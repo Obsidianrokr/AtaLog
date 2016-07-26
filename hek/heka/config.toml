@@ -1,3 +1,6 @@
+#INPUTS
+
+
 [LogstreamerInput]
 log_directory = "/opt/var/log/"
 file_match = 'messages'
@@ -5,12 +8,45 @@ file_match = 'messages'
 [DockerEventInput]
 type = "DockerEventInput"
 
-[TcpInput]
+[JiraSyslogTCP]
+type = "TcpInput"
 address = ":5565"
+
+[JiraSyslogUDP]
+type = "UdpInput"
+address = ":5565"
+
+
+#DECODERS
+
 
 [PayloadEncoder]
 append_newlines = false
 
+
+#ENCODERS
+
+
+[ESJsonEncoder]
+es_index_from_timestamp = true
+type_name = "%{Type}"
+
+
+#OUTPUTS
+
+
 [LogOutput]
 message_matcher = "TRUE"
 encoder = "PayloadEncoder"
+
+[ElasticSearchOutput]
+message_matcher = "TRUE"
+server = "http://localhost:9200"
+flush_count = 10
+encoder = "ESJsonEncoder"
+flush_interval = 50
+
+
+[DashboardOutput]
+ticker_interval = 1
+address = "0.0.0.0:4352"

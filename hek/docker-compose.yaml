@@ -40,6 +40,7 @@ heka:
   ports:
     - "4352:4352"
     - "5565:5565"
+    - "5565/udp:5565/udp"
   #command: hekad -config /etc/heka/config.toml
 
 
