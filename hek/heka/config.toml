@@ -19,12 +19,24 @@ address = ":5565"
 
 #DECODERS
 
+[es_payload]
+type = "SandboxEncoder"
+filename = "/heka/sandbox/lua/encoders/es_payload.lua"
+    [es_payload.config]
+    es_index_from_timestamp = true
+    index = "%{Logger}-%{%Y.%m.%d}"
+    type_name = "%{Type}-%{Hostname}"
 
 [PayloadEncoder]
 append_newlines = false
 
 
 #ENCODERS
+
+
+[ESLogstashV0Encoder]
+es_index_from_timestamp = true
+type_name = "%{Type}"
 
 
 [ESJsonEncoder]
@@ -42,13 +54,11 @@ encoder = "PayloadEncoder"
 [ElasticSearchOutput]
 message_matcher = "TRUE"
 server = "http://localhost:9200"
-flush_count = 10
-encoder = "ESJsonEncoder"
-flush_interval = 50
+encoder = "es_payload"
 
 
 [DashboardOutput]
-static_directory = "/heka/dashboard"
+static_directory = "/heka/dasher"
 working_directory = "/tmp/heka"
 ticker_interval = 1
-address = "0.0.0.0:4352"
+address = "http://localhost:4352"

@@ -20,7 +20,7 @@ elasticsearch:
 #  links:
 #    - elasticsearch
 kibana:
-  image: kibana:latest
+  build: kibana/
   volumes:
     - ./kibana/:/opt/kibana/config/
   ports:
