@@ -5,6 +5,9 @@ file_match = 'messages'
 [DockerEventInput]
 type = "DockerEventInput"
 
+[TcpInput]
+address = ":5565"
+
 [PayloadEncoder]
 append_newlines = false
 
